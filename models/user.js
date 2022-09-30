@@ -1,3 +1,6 @@
+
+import message from './message';
+
 'use strict';
 const {
   Model
@@ -10,7 +13,14 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      User.hasMany(models.message,{
+        as:'sent',
+        foreignKey:"user1Id"
+      })
+      User.hasMany(models.message,{
+        as:'recieved',
+        foreignKey:"user2Id"
+      })
     }
   }
   User.init({
